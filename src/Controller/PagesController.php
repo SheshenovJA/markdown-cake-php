@@ -28,8 +28,18 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+    public function initialize()
+    {
+        $this->loadModel('Posts');
+
+    }
     public function home()
     {
+     $posts = $this->Posts->find('all',[
+         'order' => ['created' => 'DESC']
+     ]);
+    // debug($posts->toArray()); die;
+     $this->set('posts', $posts);
 
     }
 }

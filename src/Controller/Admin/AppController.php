@@ -24,6 +24,7 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
+
         $this->viewBuilder()->setLayout('smartAdmin');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');

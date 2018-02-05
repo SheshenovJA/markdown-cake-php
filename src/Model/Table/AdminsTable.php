@@ -8,6 +8,7 @@ use Cake\Validation\Validator;
 class AdminsTable extends AppTable {
     public function initialize(array $config)
     {
+
     }
 
     public function beforeSave($event, $entity, $options)

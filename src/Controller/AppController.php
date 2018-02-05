@@ -13,9 +13,11 @@
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
+//namespace App\View;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\View\View;
 
 
 class AppController extends Controller
@@ -24,7 +26,7 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
+       // $this->loadHelper('Markdown.Markdown');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use Cake\Event\Event;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Network\Exception\NotFoundException;
 use Cake\I18n\I18n;
@@ -10,11 +11,17 @@ use Cake\I18n\I18n;
 
 class AdminController extends AppController
 {
+    public function beforeRender(Event $event)
+    {
+        parent::beforeRender($event);
+        $this->viewBuilder()->helpers(['Markdown.Markdown']);
+    }
 
     public function initialize()
     {
         parent::initialize();
         $this->loadModel('Admins');
+        $this->loadModel('Posts');
     }
 
 
@@ -89,6 +96,37 @@ class AdminController extends AppController
     }
     public function editPage()
     {
+        $posts = $this->Posts->find('all',[
+            'order' => ['created' => 'DESC']
+        ]);
+        // debug($posts->toArray()); die;
+        $this->set('posts', $posts);
 
+
+
+    }
+    //this function will save form data
+    //$data_markdown - data from text field
+
+    public function save()
+    {
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            extract($data);
+           // debug($data); die;
+            if (!empty($data)){
+            $post = $this->Posts->newEntity();
+            $post->block_name = $block_name;
+            //$post->content_html = $this->Markdown->toHtml($data_markdown);
+            $post->content_mark = $data_markdown;
+
+            $this->Posts->save($post ,$data);
+            $this->Flash->success('Saved!');
+                return $this->redirect($this->referer());
+            }else{
+                $this->Flash->error('Post is not saved!');
+                return $this->redirect($this->referer());
+            }
+            }
     }
 }

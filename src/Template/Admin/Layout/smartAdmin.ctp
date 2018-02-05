@@ -18,10 +18,10 @@
 
 <?= $this->element('sidebar'); ?>
 
-<?= $this->Flash->render() ?>
+
 <?= $this->fetch('content'); ?>
 
-
+<?= $this->Flash->render() ?>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -39,17 +39,22 @@
 <script src="/admin/js/bootstrap/bootstrap.js"></script>
 <!-- IMPORTANT: APP CONFIG -->
 <script src="/admin/js/app.config.js"></script>
-<script src="/admin/js/demo.min.js"></script>
+<!--<script src="/admin/js/demo.min.js"></script>-->
 <!-- MAIN APP JS FILE -->
 <script src="/admin/js/app.js" > </script>
 <!-- JQUERY MASKED INPUT -->
 <script src="/admin/js/plugin/masked-input/jquery.maskedinput.js"></script>
-
-
+<script src="/admin/js/notification/SmartNotification.js"></script>
+<script src="/admin/js/smartwidgets/jarvis.widget.js"></script>
+<script src="/admin/js/plugin/easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="/admin/js/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+<script src="/admin/js/plugin/msie-fix/jquery.mb.browser.js"></script>
+<script src="/admin/js/plugin/fastclick/fastclick.js"></script>
 <!-- JQUERY VALIDATE -->
 <script src="/admin/js/plugin/jquery-validate/jquery.validate.js"></script>
 
 <?= $this->fetch('pageScript'); ?>
+
 </html>
 
 
