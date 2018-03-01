@@ -1,0 +1,7 @@
+<templateSet group="nicegroup">
+  <template name="tr" value="&lt;?= __('$END$'); ?&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+</templateSet>
