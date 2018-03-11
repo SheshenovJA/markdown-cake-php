@@ -4,7 +4,7 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
-  <template name="de" value="debug($END$); die;" toReformat="false" toShortenFQNames="true">
+  <template name="de" value="debug($END$); die;" description="" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="OTHER" value="true" />
     </context>
