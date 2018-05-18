@@ -1,0 +1,8 @@
+<templateSet group="megas">
+  <template name="ec" value="&lt;?=$END$?&gt;" description="echo" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>
