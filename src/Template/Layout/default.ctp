@@ -21,8 +21,6 @@
     <?= $this->fetch('content') ?>
 
 
-    <footer>
-    </footer>
 
     <?= $this->fetch('script') ?>
 </body>

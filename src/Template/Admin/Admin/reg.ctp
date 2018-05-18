@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Smart admin</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-production.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-skins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-rtl.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/demo.min.css">
+</head>
 <body id="login" class=" desktop-detected pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(0%, 0px, 0px);">
         <div class="pace-progress-inner"></div>
     </div>
@@ -12,14 +28,14 @@
         <!-- END AJAX-DROPDOWN -->
     </div>
 
-    <span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Already registered?</span> <a href="/admin/login" class="btn btn-danger">Sign In</a> </span>
+<!--    <span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Already registered?</span> <a href="/admin/login" class="btn btn-danger">Sign In</a> </span>-->
 
 </header>
 
 <div id="main" role="main">
     <!-- MAIN CONTENT -->
     <div id="content" class="container">
-            <div class="col-sm-12">
+            <div class="col-sm-10">
                 <div class="well no-padding">
 
                     <form action="/admin/reg" id="smart-form-register" class="smart-form client-form" method="post">
@@ -84,14 +100,11 @@
 
             // Rules for form validation
             rules : {
-                username : {
+                login : {
                     required : true
                 },
-                email : {
-                    required : true,
-                    email : true
-                },
-                password : {
+
+                pass : {
                     required : true,
                     minlength : 3,
                     maxlength : 20
@@ -143,5 +156,7 @@
 
 
 
+
 <?php $this->end() ?>
 </body>
+</html>

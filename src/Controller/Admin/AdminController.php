@@ -33,9 +33,11 @@ class AdminController extends AppController
 
     public function login()
     {
+        $this->viewBuilder()->setLayout('');
         $remember = false;
         if($this->request->is('post')){
             $data = $this->request->getData();
+            debug($data); die;
             if (!empty($this->request->getData('remember')) && $this->request->getData('remember') == 'on') {
                 $remember = true;
             }
@@ -70,6 +72,7 @@ class AdminController extends AppController
     }
     public function reg()
     {
+        $this->viewBuilder()->setLayout('');
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             if (!empty($data)){
@@ -78,7 +81,7 @@ class AdminController extends AppController
             $save_adm = $this->Admins->newEntity();
             $data = $this->Admins->patchEntity($save_adm, $data);
             if ($this->Admins->save($data)){
-            $this->Flash->success('registration complete! You can sign in');
+            $this->Flash->success('Registration complete! You can sign in');
                 return $this->redirect('admin/login');
             }else{
                 $this->Flash->error('value of one or more fields is in database now');
