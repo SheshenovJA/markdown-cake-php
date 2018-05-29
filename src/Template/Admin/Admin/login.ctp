@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-skins.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-rtl.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/demo.min.css">
+    <link rel="stylesheet" type="text/css" href="/admin/css/pnotify.custom.min.css">
 </head>
 <body>
 
@@ -28,9 +29,9 @@
         <span id="logo"> <img src="/admin/img/logo.png" alt="SmartAdmin"> </span>
     </div>
 
-<!--    <span id="extr-page-header-space">-->
-<!--        <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="/admin/reg" class="btn btn-danger">Create account</a>-->
-<!--    </span>-->
+    <!--    <span id="extr-page-header-space">-->
+    <!--        <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="/admin/reg" class="btn btn-danger">Create account</a>-->
+    <!--    </span>-->
 
 </header>
 
@@ -40,7 +41,9 @@
         <div class="row">
             <div class="col-lg-10">
                 <div class="well no-padding">
+
                     <form action="/admin/login" id="login-form" class="smart-form client-form" method="post">
+                        <?= $this->Flash->render() ?>
                         <header>
                             Sign In to Admin panel
                         </header>
@@ -58,7 +61,7 @@
                                     <input type="password" name="pass">
                                     <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
                                 <div class="note">
-<!--                                    <a href="">Forgot password?</a>-->
+                                    <!--                                    <a href="">Forgot password?</a>-->
                                 </div>
                             </section>
 
@@ -80,6 +83,7 @@
         </div>
     </div>
 </div>
+
 
 
 
@@ -110,6 +114,7 @@
 <script src="/admin/js/plugin/bootstrap-slider/bootstrap-slider.js"></script>
 <script src="/admin/js/plugin/msie-fix/jquery.mb.browser.js"></script>
 <script src="/admin/js/plugin/fastclick/fastclick.js"></script>
+<script src="/admin/js/pnotify.custom.min.js"></script>
 <!-- JQUERY VALIDATE -->
 <script src="/admin/js/plugin/jquery-validate/jquery.validate.js"></script>
 <script>
@@ -124,6 +129,7 @@
                 required : true,
             },
             pass : {
+                minlength : 5,
                 required : true,
 
             }
@@ -136,8 +142,9 @@
                 required : 'Please enter your login'
             },
             pass : {
+                minlength: 'dsasd',
                 required : 'Please enter your password'
-            }
+            },
         },
 
         // Do not change code below

@@ -45,52 +45,34 @@ class AppController extends Controller
 //        }
 
     }
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->setConfig([
+            'loginRedirect' => '/admin/dashboard',
+            'logoutRedirect' => '/admin/login',
+            'loginAction' => '/admin/login',
+            'authenticate' => [
+                'Form' => [
+                    'passwordHasher' => 'Default',
+                    'fields' => ['username' => 'login', 'password' => 'pass'],
+                    'userModel' => 'Admins',
+                ]
+            ],
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Admin',
+            ],
+            'flash' => [
+                'key' => 'auth',
+                'element' => 'error',
+            ],
+            'authError' => 'You are not authorized to access this page.'
+        ]);
+        $user = $this->Auth->user();
+        $this->loadModel('Orders');
+        //$form_count = $this->Orders->find('all')->where(['status' => 1])->count();
+        //debug($form_count); die;
 
-        if (strpos($this->request->prefix, 'admin') !== false) {
-            $this->Auth->setConfig([
-                'loginRedirect' => [
-                    'controller' => 'Admin',
-                    'action' => 'dashboard'
-                ],
-                'logoutRedirect' => [
-                    'prefix' => 'admin',
-                    'controller' => 'Admin',
-                    'action' => 'login',
-                ],
-                'loginAction' => [
-                    'controller' => 'Admin',
-                    'action' => 'login',
-                ],
-                'authenticate' => [
-                    'Form' => [
-                        'passwordHasher' => 'Default',
-                        'fields' => ['username' => 'email', 'password' => 'pass'],
-                        'userModel' => 'Admins',
-                    ]
-                ],
-                'storage' => [
-                    'className' => 'Session',
-                    'key' => 'Auth.Admin',
-                ],
-                'flash' => [
-                    'key' => 'auth',
-                    'element' => 'error',
-                ],
-                'authError' => 'You are not authorized to access this page.'
-            ]);
-
-            $admin = $this->request->session()->read('Auth.Admin');
-            if(!empty($admin)){
-                $this->loadModel('Admins');
-                $admin = $this->Admins->get($admin['id']);
-                $this->admin = $admin;
-                $this->set('admin', $admin);
-            }
-//            $this->loadModel('Forms');
-//            $forms_count = $this->Forms->find('all')->where(['Forms.viewed' => '0'])->count();
-            $this->set(compact(['user']));
-
-        }
+        $this->set(compact(['user']));
     }
 }

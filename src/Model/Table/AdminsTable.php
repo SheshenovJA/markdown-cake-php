@@ -21,13 +21,8 @@ class AdminsTable extends AppTable {
     {
 
         $validator
-            ->email('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
-            ->notEmpty('email');
-
-        $validator
-            ->requirePresence('name', 'create')
-            ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
+            ->requirePresence('login', 'create')
+            ->add('login', 'unique', ['rule' => 'validateUnique', 'provider' => 'table'])
             ->notEmpty('login');
 
         $validator

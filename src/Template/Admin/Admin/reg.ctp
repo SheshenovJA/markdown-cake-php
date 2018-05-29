@@ -38,22 +38,16 @@
             <div class="col-sm-10">
                 <div class="well no-padding">
 
-                    <form action="/admin/reg" id="smart-form-register" class="smart-form client-form" method="post">
+                    <form action="/admin/reg" id="smart-register" class="smart-form client-form" method="post">
                         <header>
-                           new admin user
+                           New admin user
                         </header>
 
                         <fieldset>
                             <section>
                                 <label class="input"> <i class="icon-append fa fa-user"></i>
-                                    <input type="text" name="name" placeholder="Username">
+                                    <input type="text" name="login" placeholder="Username">
                                     <b class="tooltip tooltip-bottom-right">Введіть Ваше імя</b> </label>
-                            </section>
-
-                            <section>
-                                <label class="input"> <i class="icon-append fa fa-envelope"></i>
-                                    <input type="email" name="email" placeholder="Email address">
-                                    <b class="tooltip tooltip-bottom-right">Email</b> </label>
                             </section>
 
                             <section>
@@ -88,75 +82,75 @@
 
 
 
-<?php $this->append('pageScript'); ?>
 
 
+<!-- JQUERY VALIDATE -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+        src="http://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+
+<script
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+
+<script src="/admin/js/plugin/pace/pace.js"></script>
+<script src="/admin/js/bootstrap/bootstrap.js"></script>
+<!-- IMPORTANT: APP CONFIG -->
+<script src="/admin/js/app.config.js"></script>
+<!--<script src="/admin/js/demo.min.js"></script>-->
+<!-- MAIN APP JS FILE -->
+<script src="/admin/js/app.js" > </script>
+<!-- JQUERY MASKED INPUT -->
+<script src="/admin/js/plugin/masked-input/jquery.maskedinput.js"></script>
+<script src="/admin/js/notification/SmartNotification.js"></script>
+<script src="/admin/js/smartwidgets/jarvis.widget.js"></script>
+<script src="/admin/js/plugin/easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="/admin/js/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+<script src="/admin/js/plugin/msie-fix/jquery.mb.browser.js"></script>
+<script src="/admin/js/plugin/fastclick/fastclick.js"></script>
+<!-- JQUERY VALIDATE -->
+<script src="/admin/js/plugin/jquery-validate/jquery.validate.js"></script>
 <script>
 
+    //runAllForms();
     // Validation
-    $(function() {
-        // Validation
-        $("#smart-form-register").validate({
-
-            // Rules for form validation
-            rules : {
-                login : {
-                    required : true
-                },
-
-                pass : {
-                    required : true,
-                    minlength : 3,
-                    maxlength : 20
-                }
+    $("#smart-register").validate({
+        // Rules for form validation
+        rules : {
+            login : {
+                minlength : 5,
+                required : true,
             },
+            pass : {
+                minlength : 5,
+                required : true,
 
-            // Messages for form validation
-            messages : {
-                login : {
-                    required : 'Please enter your login'
-                },
-                email : {
-                    required : 'Please enter your email address',
-                    email : 'Please enter a VALID email address'
-                },
-                password : {
-                    required : 'Please enter your password'
-                },
-                passwordConfirm : {
-                    required : 'Please enter your password one more time',
-                    equalTo : 'Please enter the same password as above'
-                },
-                firstname : {
-                    required : 'Please select your first name'
-                },
-                lastname : {
-                    required : 'Please select your last name'
-                },
-                gender : {
-                    required : 'Please select your gender'
-                },
-                terms : {
-                    required : 'You must agree with Terms and Conditions'
-                }
-            },
-
-            // Ajax form submition
-
-
-            // Do not change code below
-            errorPlacement : function(error, element) {
-                error.insertAfter(element.parent());
             }
-        });
+        },
 
+        // Messages for form validation
+        messages : {
+            login : {
+                minlength : 'Must be minimum 5 symbols',
+                required : 'Please enter your login'
+            },
+            pass : {
+                minlength : 'At least 5 symbols',
+                required : 'Please enter your password'
+            }
+        },
+
+        // Do not change code below
+        errorPlacement : function(error, element) {
+            error.insertAfter(element.parent());
+        }
     });
+
 </script>
 
-
-
-
-
-<?php $this->end() ?>
 </body>
 </html>
