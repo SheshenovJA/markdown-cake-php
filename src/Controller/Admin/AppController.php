@@ -39,10 +39,10 @@ class AppController extends Controller
         ]);
 
 
-//        $user = $this->request->getSession()->read('Auth.User');
-//        if (!empty($user)) {
-//            $this->redirect('/users/logout');
-//        }
+        $user = $this->request->getSession()->read('Auth.User');
+        if (!empty($user)) {
+            $this->redirect('/users/logout');
+        }
 
     }
     public function beforeFilter(Event $event)
@@ -69,10 +69,13 @@ class AppController extends Controller
             'authError' => 'You are not authorized to access this page.'
         ]);
         $user = $this->Auth->user();
-        $this->loadModel('Orders');
-        //$form_count = $this->Orders->find('all')->where(['status' => 1])->count();
-        //debug($form_count); die;
+        if(!is_null($user)){
+            $this->loadModel('Admins');
+            $admin_user = $this->Admins->get($user['id']);
 
+            $this->set(compact(['admin_user']));
+        }
+        //$form_count = $this->Orders->find('all')->where(['status' => 1])->count();
         $this->set(compact(['user']));
     }
 }

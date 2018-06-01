@@ -16,6 +16,8 @@
     <?= $this->fetch('pageCss'); ?>
 </head>
 
+<?= $this->element('header') ?>
+
 <?= $this->element('sidebar'); ?>
 
 

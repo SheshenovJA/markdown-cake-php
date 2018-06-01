@@ -1,6 +1,7 @@
 
 <aside id="left-panel">
 
+
     <!-- User info -->
     <!-- end user info -->
 

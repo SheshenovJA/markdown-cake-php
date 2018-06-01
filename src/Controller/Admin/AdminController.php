@@ -36,6 +36,8 @@ class AdminController extends AppController
         $this->viewBuilder()->setLayout('');
         $remember = false;
 
+        //if($this->){}
+
         if ($this->request->is('post')) {
 
             if (isset($this->request->getData()['rememberMe']) && $this->request->getData()['rememberMe'] == 'on') {
@@ -46,7 +48,7 @@ class AdminController extends AppController
             if ($user) {
                 $this->Auth->setUser($user);
                 if ($remember) {
-                    $this->Cookie->write('admin', $this->request->data);
+                    $this->Cookie->write('admin', $this->request->getData());
                 } elseif ($this->Cookie->check('admin')) {
                     $this->Cookie->delete('admin');
                 }
@@ -93,6 +95,28 @@ class AdminController extends AppController
     {
 
     }
+
+    public function showNotif(){
+        //
+        $this->autoRender = false;
+        $this->response->type('json');
+        if ($this->request->is('post')) {
+            $data = $this->request->getData();
+            extract($data);
+           // debug($islocked, false); die;
+            if ($islocked == 'true') {
+                debug('save to table as 1'); die;
+                $this->response->body(json_encode('Change saved.'));
+                $this->response->statusCode(200);
+                return $this->response;
+            }
+            if($islocked == 'false'){
+                debug('save to table as 0', false); die;
+            }
+        }
+
+    }
+
     public function editPage()
     {
         $posts = $this->Posts->find('all',[
