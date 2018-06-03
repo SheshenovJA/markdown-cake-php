@@ -15,6 +15,7 @@ class AdminController extends AppController
     {
         parent::beforeRender($event);
         $this->viewBuilder()->helpers(['Markdown.Markdown']);
+        $this->loadModel('AdminConfigs');
     }
 
     public function initialize()
@@ -39,9 +40,8 @@ class AdminController extends AppController
         //if($this->){}
 
         if ($this->request->is('post')) {
-
-            if (isset($this->request->getData()['rememberMe']) && $this->request->getData()['rememberMe'] == 'on') {
-                unset($this->request->getData()['rememberMe']);
+            if (isset($this->request->getData()['remember']) && $this->request->getData()['remember'] == 'on') {
+                unset($this->request->getData()['remember']);
                 $remember = true;
             }
             $user = $this->Auth->identify();
@@ -103,16 +103,33 @@ class AdminController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             extract($data);
+
            // debug($islocked, false); die;
-            if ($islocked == 'true') {
-                debug('save to table as 1'); die;
-                $this->response->body(json_encode('Change saved.'));
-                $this->response->statusCode(200);
-                return $this->response;
+            if ($islocked == '1' || $islocked == '0') {
+                $this->loadModel('AdminConfigs');
+                foreach ($data as $section => $value) {
+                    $save_data = $this->AdminConfigs
+                        ->find()
+                        ->where(['name' => $name])
+                        ->first();
+                    if(!empty($save_data)){
+                        $save_data->value = intval($islocked);
+                    }else{
+                        $save_data = $this->AdminConfigs->newEntity(['name' => $section, 'value' => $value]);
+                    }
+
+                    $this->AdminConfigs->save($save_data);
+                    $this->response->body(json_encode('Change saved.'));
+                    $this->response->statusCode(200);
+                    return $this->response;
+                }
             }
-            if($islocked == 'false'){
-                debug('save to table as 0', false); die;
-            }
+//            if($islocked == '0'){
+//               // debug('save to table as 0', false); die;
+//                $this->response->body(json_encode('Change saved.'));
+//                $this->response->statusCode(200);
+//                return $this->response;
+//            }
         }
 
     }

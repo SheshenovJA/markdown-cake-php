@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-skins.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/smartadmin-rtl.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/admin/css/demo.min.css">
+    <link rel="stylesheet" type="text/css" href="/admin/css/pnotify.custom.min.css">
     <?= $this->fetch('pageCss'); ?>
 </head>
 
@@ -52,6 +53,7 @@
 <script src="/admin/js/plugin/bootstrap-slider/bootstrap-slider.js"></script>
 <script src="/admin/js/plugin/msie-fix/jquery.mb.browser.js"></script>
 <script src="/admin/js/plugin/fastclick/fastclick.js"></script>
+<script src="/admin/js/pnotify.custom.min.js"></script>
 <!-- JQUERY VALIDATE -->
 <script src="/admin/js/plugin/jquery-validate/jquery.validate.js"></script>
 

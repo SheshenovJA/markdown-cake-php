@@ -23,7 +23,7 @@ class AppController extends Controller
     public $admin = null;
     public function initialize()
     {
-        parent::initialize();
+       // parent::initialize();
 
         $this->viewBuilder()->setLayout('smartAdmin');
         $this->loadComponent('RequestHandler');
@@ -33,10 +33,11 @@ class AppController extends Controller
 
       //  $this->set('site_locale', 'uk');
         $this->Cookie->setConfig([
-            'expires' => '+20 days',
+            'expires' => '+10 days',
             'httpOnly' => false,
-            'key' => '@qgm@rq290i92q3fnver9879dfse9@jgf9034j0g@vns@09enf[an@w4nth9048ngna@wnf8na8g2ivierni',
+            'key' => '@qgm@rq290i98768eidfse789780789thhf089f[an@w4nth9048ngna@wnf8na8g2ivierni',
         ]);
+
 
 
         $user = $this->request->getSession()->read('Auth.User');
@@ -75,7 +76,13 @@ class AppController extends Controller
 
             $this->set(compact(['admin_user']));
         }
+        $this->loadModel('AdminConfigs');
+        $admin_options = $this->AdminConfigs->find('all')->toArray();
+        foreach ($admin_options as $option) {
+            $options[$option->name] = $option->value;
+        }
+        //debug($options); die;
         //$form_count = $this->Orders->find('all')->where(['status' => 1])->count();
-        $this->set(compact(['user']));
+        $this->set(compact(['user','options']));
     }
 }

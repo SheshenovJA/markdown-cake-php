@@ -40,7 +40,7 @@
             <!-- end notification content -->
 
 
-            <span> Показувати при запуску <input id="show_notif" type="checkbox" checked name="show_notif" > </span>
+            <span> Показувати при запуску <input id="show_notif" type="checkbox" <?= (!empty($options['show_notif']) && $options['show_notif'] == 1 ? 'checked' : '')?> name="show_notif" > </span>
 
 
         </div>
